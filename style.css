@@ -1,0 +1,482 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5; /* Abu-abu sangat muda, hampir putih */
+    color: #333; /* Warna teks utama menjadi gelap */
+    overflow-x: hidden;
+}
+
+/* Tetap mempertahankan gradien untuk aksen, terlihat bagus di latar terang */
+.gradient-text {
+    background: linear-gradient(90deg, #8BC34A, #4FC3F7); /* Hijau muda -> Biru Langit */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Warna glow disesuaikan untuk latar terang dan gradien baru */
+.glow {
+    box-shadow: 0 0 15px rgba(139, 195, 74, 0.3); /* Warna hijau dari gradien baru */
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-10px);
+    /* Warna shadow disesuaikan dengan gradien baru */
+    box-shadow: 0 20px 25px -5px rgba(139, 195, 74, 0.2); /* Warna hijau dari gradien baru */
+}
+
+#canvas3d {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.team-card:hover .team-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.team-overlay {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.app-screen {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 380px; /* Lebar maksimal container mockup ponsel */
+    height: auto;
+    min-height: 400px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    /* ----- PERBAIKAN MENYELURUH: Pastikan ini transparan dan tanpa padding/shadow/blur ----- */
+    padding: 0 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    border-radius: 0 !important; /* Pastikan tidak ada border-radius default dari container */
+}
+
+.app-screen img {
+    /* ----- PERBAIKAN MENYELURUH: Untuk menghilangkan garis hijau dan mengisi penuh ----- */
+    width: 100% !important;
+    height: 100% !important; /* Gunakan height 100% untuk mengisi tinggi container */
+    object-fit: cover; /* Penting: Gambar akan mengisi container dan memotong kelebihan di tepi */
+    transform: scale(1.02); /* Sedikit zoom untuk menutupi garis tepi dari gambar asli */
+    border-radius: 2.5rem; /* Sesuaikan border-radius gambar agar sesuai dengan bentuk ponsel */
+    display: block;
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+}
+
+/* Perbaikan Bayangan Belakang HP (Ini akan hilang karena div-nya dihapus di HTML) */
+/* Namun, kita pertahankan box-shadow di .app-screen img untuk efek glow langsung */
+.hero .relative > .absolute,
+#app .relative > .absolute {
+    /* Aturan ini bisa dihapus jika div tersebut sudah dihapus dari HTML */
+    /* top: 0px; left: 0px; right: 0px; bottom: 0px; */
+    /* filter: blur(2px); opacity: 0.1; */
+    /* border-radius: 1.5rem; box-shadow: none; */
+    /* transition: all 0.3s ease; */
+    display: none; /* Tambahkan ini sebagai fallback jika elemennya masih ada */
+}
+
+
+.app-screen:hover img {
+    transform: rotateY(15deg) rotateX(5deg) scale(1.05); /* Skala lebih besar saat hover */
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, #8BC34A, #4FC3F7);
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -26px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #8BC34A;
+    border: 2px solid #4FC3F7;
+}
+
+/* Penyesuaian untuk Latar Belakang Terang */
+
+/* Navbar */
+nav {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+nav a {
+    color: #555;
+    transition: color 0.3s ease;
+}
+nav a:hover {
+    color: #8BC34A;
+}
+nav button {
+    color: #555;
+}
+
+/* Hero Section */
+section.relative.min-h-screen {
+    background: none;
+    background-color: transparent;
+}
+section h1, section h2, section h3 {
+    color: #222;
+}
+section p, .text-gray-300 {
+    color: #444 !important;
+}
+section ul li span {
+    color: #444 !important;
+}
+
+section .flex.flex-wrap.gap-4 a.px-8.py-3.border {
+    border-color: #ccc;
+    color: #555;
+}
+section .flex.flex-wrap.gap-4 a.px-8.py-3.border:hover {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+/* ----- PERBAIKAN MENYELURUH: Hero Image Container ----- */
+.hero .relative > div:first-child { /* Ini menargetkan div yang membungkus img di Hero */
+    background-color: transparent !important; /* Pastikan transparan */
+    padding: 0 !important; /* Hapus padding */
+    box-shadow: none !important; /* Hapus bayangan */
+    backdrop-filter: none !important; /* Hapus backdrop-filter */
+    border-radius: 2.5rem !important; /* Sudut membulat yang sama dengan gambar */
+}
+
+.hero .relative > div:first-child > img { /* Target gambar di Hero */
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; /* Gunakan cover untuk mengisi dan memotong */
+    transform: scale(1.02); /* Sedikit zoom untuk menutupi garis tepi */
+    border-radius: 2.5rem !important; /* Sudut membulat yang sama dengan ponsel */
+    margin: 0 auto;
+    padding: 0; /* Pastikan tidak ada padding di gambar itu sendiri */
+    box-sizing: border-box;
+}
+
+
+/* About Section */
+#about {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+#about .bg-gray-800,
+#features .bg-gray-800,
+#roadmap .bg-gray-800,
+#contact .bg-gray-800,
+#app .bg-gray-800.bg-opacity-50 {
+    background-color: #FFFFFF !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+#about .text-gray-300,
+#features .text-gray-300,
+#roadmap .text-gray-300,
+#contact .text-gray-300,
+#app .text-gray-300 {
+    color: #444 !important;
+}
+
+#about i.fas {
+    color: #8BC34A;
+}
+#about .bg-blue-500.bg-opacity-20 {
+    background-color: rgba(139, 195, 74, 0.1);
+}
+#about .bg-purple-500.bg-opacity-20 {
+    background-color: rgba(79, 195, 247, 0.1);
+}
+#about .text-blue-400 { color: #8BC34A; }
+#about .text-purple-400 { color: #4FC3F7; }
+
+/* Features Section */
+#features .bg-blue-500.bg-opacity-20 {
+    background-color: rgba(139, 195, 74, 0.1);
+}
+#features .bg-purple-500.bg-opacity-20 {
+    background-color: rgba(79, 195, 247, 0.1);
+}
+#features .bg-green-500.bg-opacity-20 {
+    background-color: rgba(139, 195, 74, 0.1);
+}
+#features .text-blue-400 { color: #8BC34A; }
+#features .text-purple-400 { color: #4FC3F7; }
+#features .text-green-400 { color: #8BC34A; }
+#features .bg-yellow-500.bg-opacity-20 {
+    background-color: rgba(255, 235, 59, 0.1);
+    color: #FFEB3B;
+}
+#features .text-yellow-400 { color: #FFEB3B; }
+#features .bg-cyan-500.bg-opacity-20 {
+    background-color: rgba(0, 188, 212, 0.1);
+    color: #00BCD4;
+}
+#features .text-cyan-400 { color: #00BCD4; }
+#features .bg-red-500.bg-opacity-20 {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+}
+#features .text-red-400 { color: #F44336; }
+
+
+/* Competitive Advantage card */
+#features .mt-16.bg-gray-800 {
+    background-color: #FFFFFF !important;
+}
+
+/* Team Section */
+/* ... (kode CSS lainnya di bagian atas file Anda) ... */
+
+/* Team Section */
+/* Team Section */
+/* ... (kode CSS lainnya di bagian atas file Anda) ... */
+
+/* Team Section */
+#team {
+    background-color: rgba(240, 242, 245, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    perspective: 1000px; /* Penting untuk efek 3D pada grid container */
+}
+
+/* Modern Team Card Style ala Kartu pada Gambar + THEME GRADIENT */
+.team-modern-card {
+  position: relative;
+  background: linear-gradient(120deg, #8BC34A 0%, #38bdf8 100%);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.team-modern-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  opacity: 0.10;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  text-align: center;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+.team-modern-photo {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 180px;
+  height: 240px;
+  object-fit: cover;
+  margin-top: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  background: #fff;
+}
+
+.team-modern-top {
+  position: absolute;
+  top: 1.2rem;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.2rem;
+  font-size: 0.95rem;
+  color: #fff;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.team-modern-name {
+  z-index: 3;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #a8e063, #38bdf8);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.team-modern-role {
+  z-index: 3;
+  margin-bottom: 2rem;
+  background: #38bdf8;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 640px) {
+  .team-modern-card {
+    min-height: 340px;
+  }
+  .team-modern-photo {
+    max-width: 120px;
+    height: 160px;
+  }
+  .team-modern-bg {
+    font-size: 1.2rem;
+  }
+}
+
+/* Roadmap Section */
+#roadmap {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Contact Section */
+#contact .bg-gray-800 {
+    background-color: #FFFFFF !important;
+}
+#contact input, #contact textarea {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: #ddd;
+    color: #333;
+}
+#contact input:focus, #contact textarea:focus {
+    border-color: #8BC34A;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.4);
+}
+#contact .bg-gray-700 {
+    background-color: #e0e0e0;
+}
+#contact .bg-gray-700 .fab {
+    color: #555;
+}
+#contact .bg-gray-700:hover {
+    color: #8BC34A;
+}
+
+#contact-desc {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* Footer */
+footer {
+    background-color: rgba(240, 242, 245, 0.98);
+    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
+}
+footer a, footer .text-gray-400, footer .text-sm, footer div, footer p {
+    color: #fff !important;
+}
+footer .gradient-text {
+    background: linear-gradient(90deg, #8BC34A, #38bdf8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+
+/* Gambar mockup ponsel (di Hero Section) */
+.hero .relative > div:first-child > img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; /* Gunakan cover untuk mengisi dan memotong */
+    transform: scale(1.02); /* Sedikit zoom untuk menutupi garis tepi */
+    border-radius: 2.5rem !important; /* Sudut membulat yang sama dengan ponsel */
+    margin: 0 auto;
+    padding: 0 !important; /* Pastikan tidak ada padding di gambar itu sendiri */
+    box-sizing: border-box;
+}
+/* ... (kode CSS sebelumnya) ... */
+
+/* Tombol Kembali ke Atas (Scroll to Top Button) */
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 30px; /* Jarak dari bawah layar */
+    right: 30px; /* Jarak dari kanan layar */
+    background: linear-gradient(135deg, #8BC34A, #4FC3F7); /* Gradien hijau-biru yang sesuai tema */
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Bentuk bulat */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em; /* Ukuran ikon */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Bayangan lembut */
+    cursor: pointer;
+    opacity: 0; /* Awalnya tersembunyi */
+    visibility: hidden; /* Awalnya tidak dapat diklik */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease; /* Transisi halus */
+    z-index: 999; /* Pastikan di atas konten lain, di bawah navbar fixed */
+    border: none; /* Hapus border default button */
+    transform: translateY(20px); /* Sedikit geser ke bawah saat tersembunyi */
+}
+
+.scroll-to-top-btn.show {
+    opacity: 1; /* Tampilkan saat kelas 'show' ditambahkan */
+    visibility: visible; /* Dapat diklik saat terlihat */
+    transform: translateY(0); /* Kembali ke posisi normal */
+}
+
+.scroll-to-top-btn:hover {
+    transform: translateY(-5px); /* Efek melayang saat hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Bayangan sedikit lebih besar saat hover */
+}

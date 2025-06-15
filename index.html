@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casheye - Vision for Every Transaction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/three@0.132.2/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/gsap.min.js"></script>
+</head>
+<body>
+    <div id="canvas3d"></div>
+    
+    <nav class="relative z-50 py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="img/logo/logo.png" alt="Casheye Logo" class="h-10 w-auto"> 
+                <span class="text-2xl font-bold gradient-text">Casheye</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-300 hover:text-white transition">Tentang</a>
+                <a href="#features" class="text-gray-300 hover:text-white transition">Fitur</a>
+                <a href="#team" class="text-gray-300 hover:text-white transition">Tim</a>
+                <a href="#app" class="text-gray-300 hover:text-white transition">Aplikasi</a>
+                <a href="#roadmap" class="text-gray-300 hover:text-white transition">Roadmap</a>
+                <a href="#contact" class="text-gray-300 hover:text-white transition">Kontak</a>
+            </div>
+            <button class="md:hidden text-gray-300">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <section class="relative min-h-screen flex items-center pt-16 pb-32 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+                        <span class="gradient-text">CASHEYE!</span> Mata Untuk Setiap Transaksi
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8 max-w-2xl">
+                        Aplikasi mobile berbasis AI dan text-to-speech yang membantu pengguna dengan gangguan penglihatan mengenali uang Rupiah lewat kamera smartphone dan menyuarakan nominalnya secara otomatis.
+                        Aplikasi ini mandiri, ramah disabilitas, dan dapat digunakan kapan saja.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#app" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-medium text-white hover:opacity-90 transition">
+                            Coba Demo
+                        </a>
+                        <a href="#about" class="px-8 py-3 border border-gray-600 rounded-full font-medium text-white hover:bg-gray-800 transition">
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="relative rounded-2xl overflow-hidden 
+                                w-auto mx-auto 
+                                max-w-[200px] sm:max-w-[240px] md:max-w-[280px] lg:max-w-[320px] 
+                                h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] 
+                                flex items-center justify-center">
+                        <img src="img/mockup/mockup1.png" 
+                             alt="Casheye App Hero Mockup" class="w-full h-full object-contain rounded-lg glow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 bg-opacity-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Tentang Proyek Casheye</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Casheye merevolusi aksesibilitas bagi komunitas tunanetra dan individu dengan gangguan penglihatan di Indonesia.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 rounded-xl bg-blue-500 bg-opacity-20 flex items-center justify-center mb-6">
+                        <i class="fas fa-exclamation-circle text-blue-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Latar Belakang Masalah</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-400 mt-1 mr-3"></i>
+                            <span>Di Indonesia, banyak penyandang tunanetra, lansia, dan penjual lanjut usia kesulitan mengenali uang.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-400 mt-1 mr-3"></i>
+                            <span>Solusi yang ada masih bergantung pada bantuan orang lain, yang tidak selalu tersedia dan berisiko menimbulkan salah nominal atau penipuan.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-400 mt-1 mr-3"></i>
+                            <span>Keterbatasan teknologi bantu yang tersedia.</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 rounded-xl bg-purple-500 bg-opacity-20 flex items-center justify-center mb-6">
+                        <i class="fas fa-bullseye text-purple-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Tujuan Utama Kami</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-purple-400 mt-1 mr-3"></i>
+                            <span>Membantu Penyandang Tunanetra dan Individu dengan Gangguan Penglihatan.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-purple-400 mt-1 mr-3"></i>
+                            <span>Mengurangi Risiko Penipuan dan Kesalahan Transaksi.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-purple-400 mt-1 mr-3"></i>
+                            <span>Memanfaatkan Teknologi untuk Mewujudkan Inklusi Finansial.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-purple-400 mt-1 mr-3"></i>
+                            <span>Mendukung Lansia dan Individu dengan Gangguan Penglihatan Ringan.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="features" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Fitur Unggulan Casheye</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Casheye menggabungkan teknologi mutakhir dengan desain intuitif untuk menciptakan pengalaman yang mudah diakses.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 card-hover backdrop-blur-md">
+                    <div class="w-16 h-16 rounded-xl bg-blue-500 bg-opacity-20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-volume-up text-blue-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Umpan Balik Suara</h3>
+                    <p class="text-gray-300 text-center">
+                        Memberikan informasi nominal uang dalam bentuk suara (Audio Feedback).
+                    </p>
+                </div>
+                
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 card-hover backdrop-blur-md">
+                    <div class="w-16 h-16 rounded-xl bg-purple-500 bg-opacity-20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-cogs text-purple-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Klasifikasi Otomatis Uang Rupiah</h3>
+                    <p class="text-gray-300 text-center">
+                        Mendeteksi dan mengenali nominal uang Rupiah secara cepat dan akurat menggunakan model AI YOLOv5.
+                    </p>
+                </div>
+                
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 card-hover backdrop-blur-md">
+                    <div class="w-16 h-16 rounded-xl bg-green-500 bg-opacity-20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-camera text-green-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Penggunaan Kamera Langsung</h3>
+                    <p class="text-gray-300 text-center">
+                        Memanfaatkan kamera (webcam) perangkat pengguna yang diakses melalui JavaScript untuk menangkap gambar uang secara langsung.
+                    </p>
+                </div>
+
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 card-hover backdrop-blur-md">
+                    <div class="w-16 h-16 rounded-xl bg-yellow-500 bg-opacity-20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-arrows-alt-h text-yellow-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Pilihan Kamera Depan/Belakang</h3>
+                    <p class="text-gray-300 text-center">
+                        Fleksibilitas untuk menggunakan kamera depan atau belakang smartphone.
+                    </p>
+                </div>
+
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 card-hover backdrop-blur-md">
+                    <div class="w-16 h-16 rounded-xl bg-cyan-500 bg-opacity-20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-universal-access text-cyan-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Antarmuka Ramah Aksesibilitas</h3>
+                    <p class="text-gray-300 text-center">
+                        Antarmuka sederhana, ringan, responsif, dan ramah aksesibilitas.
+                    </p>
+                </div>
+
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 card-hover backdrop-blur-md">
+                    <div class="w-16 h-16 rounded-xl bg-red-500 bg-opacity-20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-headphones-alt text-red-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Integrasi Suara Bahasa Indonesia</h3>
+                    <p class="text-gray-300 text-center">
+                        Hasil deteksi dikonversi menjadi suara menggunakan Google Text-to-Speech (gTTS), lalu diputar.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-white bg-opacity-95 rounded-2xl p-8 backdrop-blur-md">
+                <h3 class="text-2xl font-bold mb-6 text-center gradient-text">Kelebihan Sistem</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-14 h-14 rounded-xl bg-blue-500 bg-opacity-20 flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-bolt text-blue-400 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Deteksi Cepat & Real-time</h4>
+                        <p class="text-gray-300">Deteksi cepat dan real-time.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-14 h-14 rounded-xl bg-purple-500 bg-opacity-20 flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-cloud text-purple-400 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Dapat Digunakan Tanpa Instalasi</h4>
+                        <p class="text-gray-300">Cukup via browser (PWA).</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-14 h-14 rounded-xl bg-green-500 bg-opacity-20 flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-check-circle text-green-400 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Sudah Mendukung Audio Output</h4>
+                        <p class="text-gray-300">Memberikan umpan balik suara otomatis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="team" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 bg-opacity-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Tim Hebat Kami</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Pikiran-pikiran brilian di balik Casheye - Tim Capstone Coding Camp
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="team-modern-card">
+                    <div class="team-modern-bg">LEAD DEVELOPER</div>
+                    <img src="img/team/iyan.png" alt="Muhammad Septian Zamzani" class="team-modern-photo">
+                    <div class="team-modern-top">
+                        <span>CC25-CF099</span>
+                        <span>Universitas Siber Asia</span>
+                    </div>
+                    <div class="team-modern-name">MUHAMMAD SEPTIAN ZAMZANI</div>
+                    <div class="team-modern-role">Lead Developer</div>
+                </div>
+                <!-- Card 2 -->
+                <div class="team-modern-card">
+                    <div class="team-modern-bg">MACHINE LEARNING</div>
+                    <img src="img/team/fayaza.png" alt="Fayyaza Farya Anakidanda" class="team-modern-photo">
+                    <div class="team-modern-top">
+                        <span>CC25-CF099</span>
+                        <span>STTI NIIT</span>
+                    </div>
+                    <div class="team-modern-name">FAYYAZA FARYA ANAKIDANDA</div>
+                    <div class="team-modern-role">Machine Learning</div>
+                </div>
+                <!-- Card 3 -->
+                <div class="team-modern-card">
+                    <div class="team-modern-bg">MACHINE LEARNING</div>
+                    <img src="img/team/sakti.png" alt="Sakti Mujahid Imani" class="team-modern-photo">
+                    <div class="team-modern-top">
+                        <span>CC25-CF099</span>
+                        <span>Institut Teknologi Sumatra</span>
+                    </div>
+                    <div class="team-modern-name">SAKTI MUJAHID IMANI</div>
+                    <div class="team-modern-role">Machine Learning</div>
+                </div>
+                <!-- Card 4 -->
+                <div class="team-modern-card">
+                    <div class="team-modern-bg">UI/UX DESIGNER</div>
+                    <img src="img/team/asav.png" alt="Asavira Azzahra" class="team-modern-photo">
+                    <div class="team-modern-top">
+                        <span>CC25-CF099</span>
+                        <span>Institut Teknologi Sumatra</span>
+                    </div>
+                    <div class="team-modern-name">ASAVIRA AZZAHRA</div>
+                    <div class="team-modern-role">UI/UX Designer</div>
+                </div>
+                <!-- Card 5 -->
+                <div class="team-modern-card">
+                    <div class="team-modern-bg">FRONTEND DEVELOPER</div>
+                    <img src="img/team/sunay.png" alt="Moh Sunay Bella Faqih Firian Jaya" class="team-modern-photo">
+                    <div class="team-modern-top">
+                        <span>CC25-CF099</span>
+                        <span>Universitas DHIP</span>
+                    </div>
+                    <div class="team-modern-name">MOH SUNAY BELLA FAQIH FIRIAN JAYA</div>
+                    <div class="team-modern-role">Frontend Developer</div>
+                </div>
+                <!-- Card 6 -->
+                <div class="team-modern-card">
+                    <div class="team-modern-bg">BACKEND DEVELOPER</div>
+                    <img src="img/team/wahyunew.png" alt="Wahyu Apriansah" class="team-modern-photo">
+                    <div class="team-modern-top">
+                        <span>CC25-CF099</span>
+                        <span>STTI NIIT</span>
+                    </div>
+                    <div class="team-modern-name">WAHYU APRIANSAH</div>
+                    <div class="team-modern-role">Backend Developer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="app" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Penggunaan Aplikasi Casheye</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Rasakan masa depan teknologi finansial yang mudah diakses dengan Casheye.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="bg-white bg-opacity-95 rounded-2xl p-8 backdrop-blur-md card-hover">
+                        <h3 class="text-2xl font-bold mb-4">Target Pengguna</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-user text-blue-400 mt-1 mr-3"></i>
+                                <span>Penyandang Tunanetra dan Gangguan Penglihatan.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-user text-purple-400 mt-1 mr-3"></i>
+                                <span>Lansia, Keluarga, atau Pendamping Difabel.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-user text-green-400 mt-1 mr-3"></i>
+                                <span>Institusi Sosial & Lembaga Pendidikan.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-95 rounded-2xl p-8 backdrop-blur-md card-hover">
+                        <h3 class="text-2xl font-bold mb-4">Alur Penggunaan Aplikasi</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-mobile-alt text-blue-400 mt-1 mr-3"></i>
+                                <span>Buka Aplikasi CashEye di smartphone atau PC.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-400 mt-1 mr-3"></i>
+                                <span>Izinkan penggunaan kamera.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-camera text-green-400 mt-1 mr-3"></i>
+                                <span>Arahkan kamera ke uang untuk scan dan deteksi nominal.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="relative flex flex-col items-center">
+                    <div class="app-screen w-auto mx-auto 
+                                max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] 
+                                h-[550px] sm:h-[600px] md:h-[650px] lg:h-[700px] 
+                                flex items-center justify-center">
+                        <img src="img/mockup/mockup3.png" 
+                             alt="Casheye App Interface Mockup" class="w-full h-full object-contain rounded-2xl glow">
+                    </div>
+                    <a href="https://www.casheye.my.id/" target="_blank" class="mt-6 px-8 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-full font-semibold shadow-md hover:shadow-lg transition duration-300">
+                        Coba Sekarang!
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 text-center">
+                <h3 class="text-2xl font-bold text-white mb-4">Nilai Desain UI/UX</h3>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <div class="bg-white bg-opacity-20 px-6 py-3 rounded-full font-medium text-white">Elegan</div>
+                    <div class="bg-white bg-opacity-20 px-6 py-3 rounded-full font-medium text-white">Stylish</div>
+                    <div class="bg-white bg-opacity-20 px-6 py-3 rounded-full font-medium text-white">Menarik</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="technology" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 bg-opacity-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Teknologi yang Digunakan</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Detail teknologi inti yang mendukung Casheye beroperasi.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 card-hover backdrop-blur-md">
+                    <div class="w-16 h-16 rounded-xl bg-blue-500 bg-opacity-20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-code text-blue-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Frontend</h3>
+                    <ul class="space-y-2 text-gray-300 text-left">
+                        <li><span class="font-semibold">Framework:</span> CSS dan JS digunakan untuk membangun antarmuka web yang sederhana, ringan, dan responsif.</li>
+                        <li><span class="font-semibold">Fungsi:</span> Menampilkan tampilan kamera, hasil klasifikasi uang, dan memutar audio.</li>
+                        <li><span class="font-semibold">PWA (Progressive Web App):</span> Aplikasi berbasis web yang dapat diakses langsung melalui browser, dapat di-install ke layar utama, bekerja ringan, dan cocok untuk perangkat dengan keterbatasan.</li>
+                        <li><span class="font-semibold">Alasan:</span> Blade mudah digunakan dan terintegrasi langsung dengan Laravel. Dengan PWA, aplikasi dapat digunakan tanpa instalasi tambahan.</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 card-hover backdrop-blur-md">
+                    <div class="w-16 h-16 rounded-xl bg-purple-500 bg-opacity-20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-server text-purple-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Backend</h3>
+                    <ul class="space-y-2 text-gray-300 text-left">
+                        <li><span class="font-semibold">Laravel:</span> Mengelola alur data dari kamera ke model AI dan memproses hasil klasifikasi untuk ditampilkan.</li>
+                        <li><span class="font-semibold">FastAPI (Python):</span> Berfungsi sebagai microservice inference untuk model YOLOv5 yang mendeteksi nominal uang Rupiah.</li>
+                        <li><span class="font-semibold">Komunikasi:</span> Laravel mengirimkan gambar ke FastAPI, lalu menerima label deteksi dan confidence score.</li>
+                        <li><span class="font-semibold">Alasan:</span> Laravel kuat dalam manajemen web dan routing, sementara FastAPI cepat dan ringan untuk inferensi model AI.</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 card-hover backdrop-blur-md">
+                    <div class="w-16 h-16 rounded-xl bg-green-500 bg-opacity-20 flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-brain text-green-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Model AI & Dataset</h3>
+                    <ul class="space-y-2 text-gray-300 text-left">
+                        <li><span class="font-semibold">Jenis Model:</span> YOLOv5s.</li>
+                        <li><span class="font-semibold">Tipe Task:</span> Object Detection.</li>
+                        <li><span class="font-semibold">Arsitektur:</span> Convolutional Neural Network (CNN) berbasis YOLOv5s.</li>
+                        <li><span class="font-semibold">Framework:</span> PyTorch melalui implementasi resmi YOLOv5.</li>
+                        <li><span class="font-semibold">Jumlah Kelas:</span> 7 kelas uang rupiah (1k, 2k, 5k, 10k, 20k, 50k, 100k).</li>
+                        <li><span class="font-semibold">Jumlah Data:</span> 1.200 gambar.</li>
+                        <li><span class="font-semibold">Sumber Dataset:</span> Koleksi pribadi.</li>
+                        <li><span class="font-semibold">Tool Anotasi:</span> Label Studio.</li>
+                        <li><span class="font-semibold">Format Output:</span> YOLO format (bounding box & label kelas).</li>
+                        <li><span class="font-semibold">Pembagian Data:</span> 80% pelatihan, 20% validasi.</li>
+                        <li><span class="font-semibold">Proses Pelatihan:</span> Dilatih menggunakan PyTorch dengan YOLOv5 selama 40 epoch. Menggunakan optimizer SGD atau Adam.</li>
+                        <li><span class="font-semibold">Augmentasi Data:</span> Dilakukan otomatis selama pelatihan untuk meningkatkan generalisasi model.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 bg-opacity-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Rencana Pengembangan</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Rencana kami untuk pengembangan di masa depan Casheye.
+                </p>
+            </div>
+            
+            <div class="relative max-w-3xl mx-auto">
+                <div class="space-y-8">
+                    <div class="relative timeline-item pl-8">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold">Optimasi Performa & Porting ke Android</h3>
+                                <span class="bg-blue-500 bg-opacity-20 text-blue-400 px-3 py-1 rounded-full text-sm">Fase 1</span>
+                            </div>
+                            <p class="text-gray-300">
+                                Optimasi kecepatan inferensi untuk perangkat rendah daya. Porting sistem ke aplikasi mobile Android.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative timeline-item pl-8">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold">Penambahan Fitur Validasi</h3>
+                                <span class="bg-purple-500 bg-opacity-20 text-purple-400 px-3 py-1 rounded-full text-sm">Fase 2</span>
+                            </div>
+                            <p class="text-gray-300">
+                                Penambahan fitur validasi ulang suara, atau konfirmasi dengan getaran untuk meningkatkan akurasi dan pengalaman pengguna.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative timeline-item pl-8">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold">Integrasi Database Transaksi Sederhana</h3>
+                                <span class="bg-green-500 bg-opacity-20 text-green-400 px-3 py-1 rounded-full text-sm">Fase 3 (Opsional)</span>
+                            </div>
+                            <p class="text-gray-300">
+                                Integrasi opsional dengan database transaksi sederhana untuk pencatatan riwayat atau fitur tambahan.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative timeline-item pl-8">
+                        <div class="timeline-dot"></div>
+                        <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold">Ekspansi dan Peningkatan AI</h3>
+                                <span class="bg-yellow-500 bg-opacity-20 text-yellow-400 px-3 py-1 rounded-full text-sm">Fase Selanjutnya</span>
+                            </div>
+                            <p class="text-gray-300">
+                                Potensi penambahan dukungan untuk mata uang lain atau peningkatan lebih lanjut pada model AI.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Hubungi Kami</h2>
+                <p id="contact-desc" class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Kami senang mendengar dari Anda! Hubungi kami untuk kolaborasi, pertanyaan, atau masukan.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 backdrop-blur-md card-hover">
+                    <h3 class="text-2xl font-bold mb-6">Informasi Kontak</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500 bg-opacity-20 flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-blue-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Email</h4>
+                                <p class="text-gray-300">casheye.codingcamp@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500 bg-opacity-20 flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-purple-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Lokasi</h4>
+                                <p class="text-gray-300">Coding Camp, Indonesia</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-medium mb-4">Ikuti Kami</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-blue-500 transition">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-blue-400 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-purple-600 transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-blue-700 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white bg-opacity-95 rounded-2xl p-8 backdrop-blur-md card-hover">
+                    <h3 class="text-2xl font-bold mb-6">Kirim Pesan Kepada Kami</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block mb-2">Nama Anda</label>
+                            <input type="text" id="name" class="w-full bg-gray-700 bg-opacity-50 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-2">Alamat Email</label>
+                            <input type="email" id="email" class="w-full bg-gray-700 bg-opacity-50 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2">Pesan</label>
+                            <textarea id="message" rows="4" class="w-full bg-gray-700 bg-opacity-50 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-medium text-white hover:opacity-90 transition w-full">
+                            Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-900 bg-opacity-80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                    <img src="img/logo/logo.png" alt="Casheye Logo" class="h-8 w-auto"> 
+                    <span class="text-xl font-bold gradient-text">Casheye</span>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
+                    <a href="#about" class="text-gray-400 hover:text-white transition">Tentang</a>
+                    <a href="#features" class="text-gray-400 hover:text-white transition">Fitur</a>
+                    <a href="#team" class="text-gray-400 hover:text-white transition">Tim</a>
+                    <a href="#app" class="text-gray-400 hover:text-white transition">Aplikasi</a>
+                    <a href="#roadmap" class="text-gray-400 hover:text-white transition">Roadmap</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition">Kontak</a>
+                </div>
+                
+                <div class="text-gray-400 text-sm">
+                    &copy; 2025 Casheye Project. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-to-top-btn" title="Kembali ke Atas">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
